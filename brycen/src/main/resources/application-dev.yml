@@ -1,0 +1,8 @@
+# dev property setting
+server:
+  port: 8082
+
+spring:
+  config:
+    activate:
+      on-profile: dev

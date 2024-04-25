@@ -1,0 +1,27 @@
+# https://docs.spring.io/spring-boot/docs/2.1.9.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-profile-specific-properties
+
+# [순서]
+# 1. spring boot 구동
+# 2. application.yml 읽음
+# 3. application.yml 의 spring.profiles.active 값을 읽음
+# 4. spring.profiles.active 에 해당하는 config.import 에 일치하는 application-local 또는 dev 를 읽음
+#     -> application-local 또는 dev 내 on-profile 의 값으로 해당 프로퍼티를 읽음 
+#     -> https://velog.io/@devholic/Spring-YAML-%EC%97%AC%EB%9F%AC-%EA%B0%9C-%EC%93%B0%EA%B8%B0
+# 5. ${spring.profiles.active} 로 해당 값을 코드상 사용할 수 있음. 
+#     또는 Environment 객체에서 사용할 class 에서 주입하여 사용 가능
+spring:
+  config:
+    import:
+      - classpath:/application-local.yml
+      - classpath:/application-dev.yml
+
+  profiles:
+    # default: local
+    active: local
+
+    #thymeleaf 설정
+  thymeleaf:
+    # check-template-location: true   # templates 디렉토리에 파일이 있는지 없는지 체크, 없으면 에러를 발생시킨다.
+    # prefix: classpath:/templates/   # .html 파일을 불러오기 위한 경로 설정(src/main/resources/templates)
+    suffix: .html                   # 파일 확장자
+    cache: false                    # thymeleaf에 대한 캐시를 남기지 않는다. cache=false 설정(운영시는 true)

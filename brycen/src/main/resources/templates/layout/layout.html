@@ -1,0 +1,33 @@
+<!-- 전체 레이아웃 -->
+<!DOCTYPE html>
+<!-- xmlns:th="http://www.thymeleaf.org" 으로 thymleaf를 사용할 수 있음 -->
+<!-- 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" Thymeleaf Layout Dialect를 사용하기 위한 네임스페이스를 정의
+    -> 이를 통해, css / 외부라이브러리 / header / footer 등 공통 영역은 별도코딩 없이 재사용 가능
+    -> <div layout:fragment="content"></div> 내용만 바뀜
+-->
+<!-- 
+    해당 레이아웃 적용 관련은 test.html 참고(layout:decorate)
+-->
+<html
+  lagn="ko"
+  xmlns:th="http://www.thymeleaf.org" 
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8" />
+    <!-- css / jquery 를 관리하는 환경 영역[S] -->
+      <!-- @{/css/common.css} 는 /src/main/resources/static 하위를 가리킴 -->
+    <link th:inline="css" th:href="@{/css/common.css}" rel="stylesheet"/>
+      <!-- jQuery CDN을 통해 jQuery 라이브러리 추가 -->
+      <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- css / jquery 를 관리하는 환경 영역[E] -->
+</head>
+<body>
+  <div th:replace="fragments/header::headerFragment"></div>
+
+  <th:block layout:fragment="content"></th:block>
+
+  <div th:replace="fragments/footer::footerFragment"></div>
+</body>
+</html>

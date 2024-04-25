@@ -1,0 +1,19 @@
+# local property setting
+server:
+  port: 8081
+
+# 이렇게 설정하면
+# application.yml 에서 profiles.active 가 local이라도
+# import:
+# - classpath:/application-local.yml
+# - classpath:/application-dev.yml
+# 와 같이 설정되어 있고 local/dev에 프로퍼티(ex-server.port)가 동일하게 존재한다면, 
+# 맨 마지막 프로퍼티로 덮어씌워진다
+# spring:
+#   profiles:
+#     active: local # 기본 환경 local
+
+spring:
+  config:
+    activate:
+      on-profile: local

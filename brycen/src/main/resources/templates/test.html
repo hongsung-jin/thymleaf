@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout}"
+>
+<body>
+    <div layout:fragment="content" id='content'>
+        this is <span th:text=${activeProfile}></span>
+    </div>
+</body>
+</html>
+
+<!-- HTML 과 script 분리 -->
+<script th:src="@{/js/test.js}"></script>
+<!-- jQuery 로드 후에 init 함수 호출 -->
+<script>
+    /* 
+        jquery 사용 의미는 서버에서 렌더링 되어있는 데이터를 단순 삭제 / 수정과 같은 DOM을 조작함을 의미
+        때문에 서버에서 처리되어 내려오는 변수(여기서는 activeProfile)를 init 함수에 전달하는 것은 사용하지 않도록 한다
+     */
+    $(document).ready(function() {
+        // test.js 에 선언된 init 함수 호출
+        init();
+    });
+</script>
