@@ -8,6 +8,7 @@ footer {
   opacity: 0.1;
 }
 
-.innerBox {
+#innerBox {
   display: flex;
+  justify-content: center;
 }

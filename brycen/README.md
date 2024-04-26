@@ -71,8 +71,10 @@ const init = (() => {
   2) application.yml 읽음
   3) application.yml 의 spring.profiles.active 값을 읽음
   4) spring.profiles.active 에 해당하는 config.import 에 일치하는 application-local 또는 dev 를 읽음
+
       -> [application-local 또는 dev 내 on-profile 의 값으로 해당 프로퍼티를 읽음](https://velog.io/@devholic/Spring-YAML-%EC%97%AC%EB%9F%AC-%EA%B0%9C-%EC%93%B0%EA%B8%B0) 
-  5) ${spring.profiles.active} 로 해당 값을 코드상 사용할 수 있음. 
+  5) ${spring.profiles.active} 로 해당 값을 코드상 사용 가능
+
       또는 Environment 객체에서 사용할 class 에서 주입하여 사용 가능
       ``` java
         @Autowired
