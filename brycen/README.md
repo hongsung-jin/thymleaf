@@ -1,4 +1,4 @@
 # CONVENTION
 
-### THIS IS PRACTICE
-asdf
+### 주석
+** 주석은 서버주석을 사용하도록 한다 (<!--/* 주석 */-->) **
