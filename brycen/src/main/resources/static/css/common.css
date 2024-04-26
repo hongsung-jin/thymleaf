@@ -1,7 +1,13 @@
 header {
   background-color: red;
+  opacity: 0.1;
 }
 
 footer {
   background-color: blue;
+  opacity: 0.1;
+}
+
+.innerBox {
+  display: flex;
 }

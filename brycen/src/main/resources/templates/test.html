@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html 
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layout/layout}"
->
-<body>
+<!--/* 
+    ~{}(틸데): 기본적으로 src/main/resources/templates 디렉토리를 기준으로 상대 경로를 처리
+    @{}(앳): 기본적으로 src/main/resources/static 디렉토리를 기준으로 애플리케이션의 상대 경로
+*/-->
+<body layout:decorate="~{layout/layout}">
     <div layout:fragment="content" id='content'>
         this is <span th:text=${activeProfile}></span>
     </div>
 </body>
-</html>
 
 <!-- HTML 과 script 분리 -->
 <script th:src="@{/js/test.js}"></script>

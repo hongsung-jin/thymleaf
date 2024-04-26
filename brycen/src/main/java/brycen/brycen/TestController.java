@@ -20,4 +20,9 @@ public class TestController {
   public String testMethod() {
     return "something";
   }
+
+  @GetMapping("/inner")
+  public String innerMethod() {
+    return "inner";
+  }
 }
