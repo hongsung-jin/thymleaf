@@ -1,13 +1,15 @@
 # CONVENTION
 
-### 주석
+## 주석
 주석은 서버주석을 사용하도록 한다 <!--/* 주석 */-->
-  브라우저 개발자도구에 주석이 노출되는 것을 방지하기 위함
-  README.md 파일 참조
+-> 브라우저 개발자도구에 주석이 노출되는 것을 방지하기 위함
 
-### HTML / JS 코드 분리
+-> README.md 파일 참조
+
+## HTML / JS 코드 분리
 화면 또는 비즈니스의 복잡도가 올라가면 코드 보기가 어려움
-떄문에 화면(HTML)과 기능(JS)을 페이지상 분리
+
+-> 때문에 화면(HTML)과 기능(JS)을 페이지상 분리
 
 ``` jscript
   <html
@@ -42,7 +44,7 @@
         때문에 서버에서 처리되어 내려오는 변수(여기서는 activeProfile)를 init 함수에 전달하는 것은 사용하지 않도록 한다
      */
     $(document).ready(function() {
-        // test.js 에 선언된 init 함수 호출
+        // document가 다 읽힌 시점에, test.js 에 선언된 init 함수 호출
         init();
     });
 </script>
@@ -58,7 +60,29 @@ const init = (() => {
 ```
 
 ## 사용 라이브러리
-1) [Thymleaf](https://www.thymeleaf.org/) 
-2) [jquery CDN](https://code.jquery.com/jquery-latest.min.js)
+1. [Thymleaf](https://www.thymeleaf.org/) 
+2. [jquery CDN](https://code.jquery.com/jquery-latest.min.js)
 
-## 
+## Local / Dev / Prd 프로퍼티 분리
+1. SpringBoot에서는 application.yml을 기본 설정파일로써 읽음
+
+  [순서]
+  1) spring boot 구동
+  2) application.yml 읽음
+  3) application.yml 의 spring.profiles.active 값을 읽음
+  4) spring.profiles.active 에 해당하는 config.import 에 일치하는 application-local 또는 dev 를 읽음
+      -> [application-local 또는 dev 내 on-profile 의 값으로 해당 프로퍼티를 읽음](https://velog.io/@devholic/Spring-YAML-%EC%97%AC%EB%9F%AC-%EA%B0%9C-%EC%93%B0%EA%B8%B0) 
+  5) ${spring.profiles.active} 로 해당 값을 코드상 사용할 수 있음. 
+      또는 Environment 객체에서 사용할 class 에서 주입하여 사용 가능
+      ``` java
+        @Autowired
+        private Environment environment;
+
+        @Value("${spring.profiles.active}")
+        private String activeProfile;
+      ```
+2. JAR BUILD
+  ```
+    mvn clean package -Dspring.profiles.active=dev
+  ```
+Dspring.profiles.active=dev 와 같이 local / dev / prd 인자를 builder에 전달한다

@@ -14,6 +14,7 @@ spring:
     import:
       - classpath:/application-local.yml
       - classpath:/application-dev.yml
+      - classpath:/application-prd.yml
 
   profiles:
     # default: local
